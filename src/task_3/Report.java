@@ -32,29 +32,7 @@ public class Report {
 
     public static JSONObject getResult(JSONArray test, JSONArray value) {
         JSONObject object = new JSONObject();
-        JSONArray objectArray = new JSONArray();
-        for (Object tes : test) {
-            JSONObject result = new JSONObject();
-            JSONObject t = (JSONObject) tes;
-            result.put("id", t.get("id"));
-            result.put("title", t.get("title"));
-            for (Object val : value) {
-                JSONObject v = (JSONObject) val;
-                if (t.get("id") == v.get("id")) {
-                    result.put("value", v.get("value"));
-                    break;
-                }
-            }
-            if (result.get("value") == null) {
-                result.put("value", "");
-            }
-            JSONArray arrayValues = (JSONArray) t.get("values");
-            if (arrayValues != null) {
-                result.put("values", values(arrayValues, value));
-            }
-            objectArray.add(result);
-        }
-        object.put("report", objectArray);
+        object.put("report", values(test, value));
         return object;
     }
 
