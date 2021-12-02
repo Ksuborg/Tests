@@ -27,6 +27,9 @@ public class Centre {
             float[] poin = getPoints(s);
             System.out.println(Arrays.toString(poin) + " " + pointLocation(poin[0], poin[1]));
         }
+
+        circle.close();
+        point.close();
     }
 
     public static float[] getPoints(String point) {

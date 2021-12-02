@@ -14,6 +14,8 @@ public class Quantity {
         while (scanner.hasNext()) {
             array.add(scanner.nextInt());
         }
+        file.close();
+        scanner.close();
 
         System.out.println(quantityOfMove(array));
     }

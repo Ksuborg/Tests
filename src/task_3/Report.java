@@ -21,6 +21,8 @@ public class Report {
         JSONParser jsonParser = new JSONParser();
         JSONObject jsonObjectTests = (JSONObject) jsonParser.parse(testsReader);
         JSONObject jsonObjectValues = (JSONObject) jsonParser.parse(valuesReader);
+        testsReader.close();
+        valuesReader.close();
 
         test = (JSONArray) jsonObjectTests.get("tests");
         value = (JSONArray) jsonObjectValues.get("values");
@@ -30,7 +32,7 @@ public class Report {
 
     public static JSONObject getResult(JSONArray test, JSONArray value) {
         JSONObject object = new JSONObject();
-        JSONArray obj = new JSONArray();
+        JSONArray objectArray = new JSONArray();
         for (Object tes : test) {
             JSONObject result = new JSONObject();
             JSONObject t = (JSONObject) tes;
@@ -50,9 +52,9 @@ public class Report {
             if (arrayValues != null) {
                 result.put("values", values(arrayValues, value));
             }
-            obj.add(result);
+            objectArray.add(result);
         }
-        object.put("report", obj);
+        object.put("report", objectArray);
         return object;
     }
 
